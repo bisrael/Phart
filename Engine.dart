@@ -1,7 +1,8 @@
-#library("Phart");
+#library ('Phart');
+
 #import ('dart:html');
-#import ("RK4.dart");
-#import ('Vector.dart');
+#import ('Phart.dart');
+#import ("Cube.dart");
 
 class Game {
   CanvasElement canvas;
@@ -23,7 +24,7 @@ class Game {
   List<int> xs;
   List<int> ys;
   
-  RkState particle;
+  List<Cube2d> particles;
   
   Game() {
     canvas = document.query("#game");
@@ -44,15 +45,20 @@ class Game {
   }
   
   void generateParticles() {
-    particle = new RkState(new Vector(_viewW/2.0, _viewH/2.0), new Vector(0.0,0.0));
+    particles = new List<Cube2d>();
   }
   
   void updateParticles(double t, double dt) {
-    particle = Rk4Integrator.integrate(particle, t, dt);
+    particles.forEach((p){ p.update(t, dt); });
+    if(particles.length < 150 && !(t%1)) particles.add(new Cube2d.random());
   }
   
-  void drawParticles() {
-    _point(particle.x + _viewW/2.0, particle.y + _viewH/2.0, 9, 255, 0, 0, 1);
+  void drawParticles([final double alpha = 1.0]) {
+    context.save();
+    context.translate(_viewW/2, _viewH/2);
+    context.scale(30, 30);
+    particles.forEach((p){ p.render2d(context); });
+    context.restore();
   }
   
   void start() {

@@ -1,18 +1,8 @@
-#import('dart:html');
-#import('Engine.dart');
+#library ("Phart");
 
-class PhartTest {
-  Game game;
-  
-  PhartTest() {
-    game = new Game();
-  }
-
-  void run() {
-    game.start();
-  }
-}
-
-void main() {
-  new PhartTest().run();
-}
+#source ("PMath.dart");
+#source ("Vector.dart");
+#source ("Quaternion.dart");
+#source ("RkState.dart");
+#source ("RkDerivative.dart");
+#source ("RkIntegrator.dart");
