@@ -1,0 +1,13 @@
+Phart
+=====
+
+Physics for Dart
+----------------
+
+Phart (PHysics for dART) is a general, multipurpose library meant for physics simulations using the Dart programming language.
+(See http://dartlang.org/)
+
+Much credit to http://gafferongames.com/ from which I take much of the concepts behind coding the RK4 integrator and much of the Quaternion class.
+(Also some other non-essential things like the Cube example).
+
+Please fork and give me pull requests if you want, I love for anyone to use this!
